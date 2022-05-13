@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,4 +20,16 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::group(['middleware' => ['auth', 'role:admin']], function () {
+    Route::get('/admin', [App\Http\Controllers\Admin\AdminController::class, 'index'])->name('admin');
+});
+Route::group(['middleware' => ['auth', 'role:dosen']], function () {
+    Route::get('/home', function () {
+        return view('home');
+    });
+});
+Route::group(['middleware' => ['auth', 'role:mahasiswa']], function () {
+    Route::get('/mahasiswa', [App\Http\Controllers\Mahasiswa\MahasiswaController::class, 'index'])->name('mahasiswa');
+});
