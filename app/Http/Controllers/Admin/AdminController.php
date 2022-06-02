@@ -8,6 +8,7 @@ use App\Models\Mahasiswa;
 
 class AdminController extends Controller
 {
+    
     public function index()
     {
     	$mahasiswa = Mahasiswa::all();

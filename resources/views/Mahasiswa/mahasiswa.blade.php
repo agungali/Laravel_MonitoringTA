@@ -17,7 +17,7 @@
                     {{ __('You are logged in!') }} -->
 
                         <div class="card-body">
-                            <a href="/pegawai/tambah" class="btn btn-primary">Input Pegawai Baru</a>
+                            <a href="/mahasiswa/create" class="btn btn-primary">Input Pegawai Baru</a>
                             <br />
                             <br />
                             <div class="table-responsive">

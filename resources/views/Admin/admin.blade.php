@@ -16,11 +16,14 @@
 
                     {{ __('You are logged in!') }} -->
 
-                        <div class="card-body">
-                            <a href="/pegawai/tambah" class="btn btn-primary">Input Pegawai Baru</a>
-                            <br />
-                            <br />
-                            <div class="table-responsive">
+                    <div class="card-body">
+                        @if (Auth::user()->role == 'mahasiswa')
+                        <a href="/pegawai/tambah" class="btn btn-primary">Input Pegawai Baru</a>
+                        <br />
+                        @else
+                        @endif
+                        <br />
+                        <div class="table-responsive">
                             <table class="table table-bordered table-hover table-striped ">
                                 <thead>
                                     <tr>
@@ -51,9 +54,9 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                            </div>
                         </div>
-                    
+                    </div>
+
                 </div>
             </div>
         </div>
