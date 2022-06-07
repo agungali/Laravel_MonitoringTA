@@ -35,6 +35,6 @@ Route::group(['middleware' => ['auth', 'role:dosen']], function () {
 });
 Route::group(['middleware' => ['auth', 'role:mahasiswa']], function () {
     Route::get('/mahasiswa', [App\Http\Controllers\Mahasiswa\MahasiswaController::class, 'index'])->name('mahasiswa');
-    Route::get('/mahasiswa/create', [App\Http\Controllers\Mahasiswa\MahasiswaController::class, 'create'])->name('create');
-    Route::post('/mahasiswa/createdata', [App\Http\Controllers\Mahasiswa\MahasiswaController::class, 'createdata'])->name('createdata');
+Route::get('/mahasiswa/create', [App\Http\Controllers\Mahasiswa\MahasiswaController::class, 'create'])->name('create');
+Route::post('/mahasiswa/createdata', [App\Http\Controllers\Mahasiswa\MahasiswaController::class, 'createdata'])->name('createdata');
 });

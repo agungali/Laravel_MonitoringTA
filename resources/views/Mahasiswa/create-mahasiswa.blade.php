@@ -11,7 +11,7 @@
             <br />
             <br />
 
-            <form method="post" action="/mahasiswa/createdata">
+            <form action="{{ route('createdata') }}" method="post" >
 
                 {{ csrf_field() }}
 
@@ -46,7 +46,7 @@
                 </div>
                 <div class="form-group">
                     <label>Dosen Pertama</label>
-                    <input type="text" name="dosen1" class="form-control" placeholder="Dosen Pertama.."></input>
+                    <input type="text" name="dosen_id1" class="form-control" placeholder="Dosen Pertama..">
                     @if($errors->has('dosen_id1'))
                     <div class="text-danger">
                         {{ $errors->first('dosen_id1')}}
@@ -55,7 +55,7 @@
                 </div>
                 <div class="form-group">
                     <label>Dosen Kedua</label>
-                    <input type="text" name="dosen2" class="form-control" placeholder="Dosen Kedua .."></input>
+                    <input type="text" name="dosen_id2" class="form-control" placeholder="Dosen Kedua ..">
                     @if($errors->has('dosen_id2'))
                     <div class="text-danger">
                         {{ $errors->first('dosen_id2')}}
@@ -71,7 +71,7 @@
                     </div>
                     @endif
                 </div>
-                <div class="form-group">
+               <div class="form-group">
                     <label>Tanggal Mulai Tugas Akhir</label>
                     <input type="date" name="start" class="form-control" placeholder="Tanggal Mulai Tugas Akhir ..">
                     @if($errors->has('year'))
@@ -80,7 +80,7 @@
                     </div>
                     @endif
                 </div>
-                <div class="form-group">
+                 <div class="form-group">
                     <label>Tanggal Berakhir Tugas AKhir</label>
                     <input type="date" name="finish" class="form-control" placeholder="Tanggal Mulai Tugas Akhir ..">
                     @if($errors->has('year'))

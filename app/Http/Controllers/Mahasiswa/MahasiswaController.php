@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Mahasiswa;
 use Illuminate\Http\Request;
 
+
 class MahasiswaController extends Controller
 {
     public function index()
@@ -26,21 +27,20 @@ class MahasiswaController extends Controller
             'dosen_id2' => 'required',
             'year' => 'required',
             'start' => 'required',
-            'finish'=> 'required',
-            'status' => 'required'
+            'finish'=> 'required'
+            
     	]);
  
-        Mahasiswa::createdata([
-    		'user_id' => $request->userid,
+        Mahasiswa::create([
+    		'user_id' => $request->user_id,
     		'title' => $request->title,
-            'dosen_id1' => $request->desen1,
-            'dosen_id2' => $request->desen2,
+            'dosen_id1' => $request->dosen_id1,
+            'dosen_id2' => $request->dosen_id2,
             'year' => $request->year,
             'start' => $request->start,
             'finish' => $request->finish,
             'status' => 'Invalid'
     	]);
- 
-    	return redirect('/mahasiswa');
+           	return redirect('/mahasiswa');
     }
 }
