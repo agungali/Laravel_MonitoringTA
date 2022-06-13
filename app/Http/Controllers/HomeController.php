@@ -1,8 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
+use App\Models\Mahasiswa;
 
 class HomeController extends Controller
 {
@@ -21,8 +21,13 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
-    {
+    // public function index()
+    // {
+    // 	$mahasiswa = Mahasiswa::all();
+    //     return view('home', ['mahasiswa' => $mahasiswa]);
+    // }
+
+    public function index(){
         return view('home');
     }
 }

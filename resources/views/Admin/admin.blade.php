@@ -18,7 +18,7 @@
 
                     <div class="card-body">
                         @if (Auth::user()->role == 'mahasiswa')
-                        <a href="/pegawai/tambah" class="btn btn-primary">Input Pegawai Baru</a>
+                        <a href="/mahasiswa/tambah" class="btn btn-primary">Input Pegawai Baru</a>
                         <br />
                         @else
                         @endif
@@ -27,28 +27,21 @@
                             <table class="table table-bordered table-hover table-striped ">
                                 <thead>
                                     <tr>
-                                        <th>Title</th>
-                                        <th>Year</th>
-                                        <th>Dosen Pembimbing 1</th>
-                                        <th>Dosen Pembimbing 2</th>
-                                        <th>Start</th>
-                                        <th>Finish</th>
+                                        <th>NIM/NIP</th>
+                                        <th>Nama</th>
                                         <th>Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach($mahasiswa as $p)
                                     <tr>
-                                        <td>{{ $p->title }}</td>
-                                        <td>{{ $p->year }}</td>
-                                        <td>{{ $p->dospem1 }}</td>
-                                        <td>{{ $p->dospem2 }}</td>
-                                        <td>{{ $p->start }}</td>
-                                        <td>{{ $p->finish }}</td>
+                                        <td></td>
+                                        <td></td>
                                         <td>{{ $p->status }}</td>
                                         <td>
-                                            <a href="/pegawai/edit/{{ $p->id }}" class="btn btn-warning">Edit</a>
-                                            <a href="/pegawai/hapus/{{ $p->id }}" class="btn btn-danger">Hapus</a>
+                                            <a href="/mahasiswa/detail/{{ $p->id }}" class="btn btn-secondary">Details</a>
+                                            <a href="/mahasiswa/edit/{{ $p->id }}" class="btn btn-warning">Edit</a>
+                                            <a href="/mahasiswa/delete/{{ $p->id }}" class="btn btn-danger">Hapus</a>
                                         </td>
                                     </tr>
                                     @endforeach

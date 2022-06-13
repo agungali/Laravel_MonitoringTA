@@ -16,11 +16,11 @@
 
                     {{ __('You are logged in!') }} -->
 
-                        <div class="card-body">
-                            <a href="/mahasiswa/create" class="btn btn-primary">Input Pegawai Baru</a>
-                            <br />
-                            <br />
-                            <div class="table-responsive">
+                    <div class="card-body">
+                        <a href="/mahasiswa/create" class="btn btn-primary">Input Pegawai Baru</a>
+                        <br />
+                        <br />
+                        <div class="table-responsive">
                             <table class="table table-bordered table-hover table-striped ">
                                 <thead>
                                     <tr>
@@ -43,19 +43,15 @@
                                         <td>{{ $p->start }}</td>
                                         <td>{{ $p->finish }}</td>
                                         <td>{{ $p->status }}</td>
-                                        <td>
-                                            <a href="/pegawai/edit/{{ $p->id }}" class="btn btn-warning">Edit</a>
-                                            <a href="/pegawai/hapus/{{ $p->id }}" class="btn btn-danger">Hapus</a>
-                                        </td>
                                     </tr>
                                     @endforeach
                                 </tbody>
                             </table>
-                            </div>
                         </div>
-                    
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    @endsection
+</div>
+@endsection

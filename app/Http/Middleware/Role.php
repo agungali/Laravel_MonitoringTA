@@ -25,7 +25,7 @@ class Role
         if (Auth::user()->role == 'admin') {
             return Redirect::to('admin');
         } elseif (Auth::user()->role == 'dosen') {
-            return Redirect::to('home');
+            return Redirect::to('dosen');
         } elseif (Auth::user()->role == 'mahasiswa') {
             return Redirect::to('mahasiswa');
         }
