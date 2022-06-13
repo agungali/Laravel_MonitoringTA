@@ -5,14 +5,32 @@ namespace App\Http\Controllers\Mahasiswa;
 use App\Http\Controllers\Controller;
 use App\Models\Mahasiswa;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 
 class MahasiswaController extends Controller
 {
     public function index()
     {
-        $mahasiswa = Mahasiswa::all();
+        $id = Auth::id();
+        //$mahasiswa = Mahasiswa::all();
+        $mahasiswa = DB::select("SELECT tb_t_mahasiswa.title, tb_t_mahasiswa.year, users.name as mahasiswa, dospem1.name as dosen1, dospem2.name as dosen2, tb_t_mahasiswa.start,tb_t_mahasiswa.finish,tb_t_mahasiswa.status  FROM tb_t_mahasiswa
+        JOIN users ON tb_t_mahasiswa.user_id=users.id
+        JOIN users AS dospem1 ON dospem1.id = tb_t_mahasiswa.dosen_id1
+        JOIN users AS dospem2 ON dospem2.id = tb_t_mahasiswa.dosen_id2 where tb_t_mahasiswa.user_id = '$id'");
+        // ->join('users.id', '=', 'tb_t_mahasiswa.user_id')
+        // ->join('users AS dospem1 ON dospem1.id','=','tb_t_mahasiswa.dosen_id1')
+        // ->join('users AS dospem2 ON dospem2.id','=','tb_t_mahasiswa.dosen_id2')
+        // ->select('tb_t_mahasiswa.*', 'user.name','tb_t_mahasiswa.title', 'dospem1.name',
+        // 'dospem2.name', 'tb_t_mahasiswa.year', 'tb_t_mahasiswa.start', 'tb_t_mahasiswa.finish', 'tb_t_mahasiswa.status')
+        // ->get(); 
         return view('Mahasiswa/mahasiswa', ['mahasiswa' => $mahasiswa]);
+        
+        // SELECT users.name, dospem1.name, dospem2.name FROM tb_t_mahasiswa
+        // JOIN users ON tb_t_mahasiswa.user_id=users.id
+        // JOIN users AS dospem1 ON dospem1.id = tb_t_mahasiswa.dosen_id1
+        // JOIN users AS dospem2 ON dospem2.id = tb_t_mahasiswa.dosen_id2;
     }
 
     public function create()
@@ -89,5 +107,6 @@ class MahasiswaController extends Controller
         $mahasiswa = Mahasiswa::find($id);
         return view('Mahasiswa/detail-mahasiswa', ['mahasiswa' => $mahasiswa]);
     }
+    
 
 }

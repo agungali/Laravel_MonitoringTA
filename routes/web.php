@@ -21,16 +21,13 @@ Route::get('/', function () {
 Route::get('/register', function () {
     return view('auth/register');
 })->name('register');
-
+Route::get('/admin/daftardosen', [App\Http\Controllers\Admin\AdminController::class, 'getdosen'])->name('getdosen');
 
 Auth::routes();
 
 Route::group(['middleware' => ['auth', 'role:admin']], function () {
     
     Route::get('/admin', [App\Http\Controllers\Admin\AdminController::class, 'index'])->name('admin');
-    // Route::get('/register', function () {
-    //     return view('auth/register');
-    // })->name('register');
     Route::get('/dosen/register', [App\Http\Controllers\Auth\RegisterDosenController::class, 'registerdosen'])->name('registerdosen');
     Route::post('/dosen/adddosen', [App\Http\Controllers\Auth\RegisterDosenController::class, 'adddosen'])->name('adddosen');
     //route update data data mahasiswa

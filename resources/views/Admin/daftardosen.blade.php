@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">{{ __('Dashboard Mahasiswa') }}</div>
+                <div class="card-header">{{ __('Home Admin') }}</div>
 
                 <div class="card-body">
                     <!-- @if (session('status'))
@@ -17,41 +17,43 @@
                     {{ __('You are logged in!') }} -->
 
                     <div class="card-body">
-                        <a href="/mahasiswa/create" class="btn btn-primary">Input Pegawai Baru</a>
+                        @if (Auth::user()->role == 'mahasiswa')
+                        <a href="/mahasiswa/tambah" class="btn btn-primary">Input Pegawai Baru</a>
                         <br />
+                        @else
+                        @endif
                         <br />
                         <div class="table-responsive">
                             <table class="table table-bordered table-hover table-striped ">
                                 <thead>
                                     <tr>
-                                        <th>Title</th>
-                                        <th>Year</th>
-                                        <th>Dosen Pembimbing 1</th>
-                                        <th>Dosen Pembimbing 2</th>
-                                        <th>Start</th>
-                                        <th>Finish</th>
+                                        <th>NIM/NIP</th>
+                                        <th>Nama</th>
                                         <th>Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($mahasiswa as $p)
+                                    @foreach($getdosen as $d)
                                     <tr>
-                                        <td>{{ $p->title }}</td>
-                                        <td>{{ $p->year }}</td>
-                                        <td>{{ $p->dosen1 }}</td>
-                                        <td>{{ $p->dosen2 }}</td>
-                                        <td>{{ $p->start }}</td>
-                                        <td>{{ $p->finish }}</td>
-                                        <td>{{ $p->status }}</td>
+                                    <td>{{ $d->name }}</td>
+                                    <td>{{ $d->email }}</td>
+                                        <td></td>
+                                        <td></td>
+                                        
+                                        <td>
+                                            <a href="/mahasiswa/detail/{{ $d->id }}" class="btn btn-secondary">Details</a>
+                                            <a href="/mahasiswa/edit/{{ $d->id }}" class="btn btn-warning">Edit</a>
+                                            <a href="/mahasiswa/delete/{{ $d->id }}" class="btn btn-danger">Hapus</a>
+                                        </td>
                                     </tr>
                                     @endforeach
                                 </tbody>
                             </table>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>
     </div>
-</div>
-@endsection
+    @endsection
