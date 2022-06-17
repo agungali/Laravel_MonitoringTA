@@ -35,6 +35,7 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
     Route::put('/mahasiswa/update/{id}', [App\Http\Controllers\Mahasiswa\MahasiswaController::class, 'update'])->name('update');
     Route::get('/mahasiswa/delete/{id}', [App\Http\Controllers\Mahasiswa\MahasiswaController::class, 'delete'])->name('delete');
     Route::get('/mahasiswa/detail/{id}', [App\Http\Controllers\Mahasiswa\MahasiswaController::class, 'detail'])->name('detail');
+    //Route::get('/mahasiswa/detail', [App\Http\Controllers\Mahasiswa\MahasiswaController::class, 'getdosen']);
     //
 });
 Route::group(['middleware' => ['auth', 'role:dosen']], function () {

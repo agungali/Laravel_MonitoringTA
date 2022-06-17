@@ -12,6 +12,7 @@ class Mahasiswa extends Model
 
     protected $fillable = [
         'user_id',
+        'nim',
         'title',
         'dosen_id1',
         'dosen_id2',
@@ -20,4 +21,11 @@ class Mahasiswa extends Model
         'finish',
         'status'
     ];
+
+
+    //relation start
+    public function users(){
+    	return $this->belongsTo('App\User');
+    }
+    //relation end
 }

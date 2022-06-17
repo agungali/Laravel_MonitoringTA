@@ -15,22 +15,13 @@ class MahasiswaController extends Controller
     {
         $id = Auth::id();
         //$mahasiswa = Mahasiswa::all();
-        $mahasiswa = DB::select("SELECT tb_t_mahasiswa.title, tb_t_mahasiswa.year, users.name as mahasiswa, dospem1.name as dosen1, dospem2.name as dosen2, tb_t_mahasiswa.start,tb_t_mahasiswa.finish,tb_t_mahasiswa.status  FROM tb_t_mahasiswa
+        $mahasiswa = DB::select("SELECT tb_t_mahasiswa.nim, users.name as nama, tb_t_mahasiswa.title, tb_t_mahasiswa.year, users.name as mahasiswa, dospem1.name as dosen1, dospem2.name as dosen2, tb_t_mahasiswa.start,tb_t_mahasiswa.finish,tb_t_mahasiswa.status  FROM tb_t_mahasiswa
         JOIN users ON tb_t_mahasiswa.user_id=users.id
         JOIN users AS dospem1 ON dospem1.id = tb_t_mahasiswa.dosen_id1
         JOIN users AS dospem2 ON dospem2.id = tb_t_mahasiswa.dosen_id2 where tb_t_mahasiswa.user_id = '$id'");
-        // ->join('users.id', '=', 'tb_t_mahasiswa.user_id')
-        // ->join('users AS dospem1 ON dospem1.id','=','tb_t_mahasiswa.dosen_id1')
-        // ->join('users AS dospem2 ON dospem2.id','=','tb_t_mahasiswa.dosen_id2')
-        // ->select('tb_t_mahasiswa.*', 'user.name','tb_t_mahasiswa.title', 'dospem1.name',
-        // 'dospem2.name', 'tb_t_mahasiswa.year', 'tb_t_mahasiswa.start', 'tb_t_mahasiswa.finish', 'tb_t_mahasiswa.status')
-        // ->get(); 
+         
+         
         return view('Mahasiswa/mahasiswa', ['mahasiswa' => $mahasiswa]);
-        
-        // SELECT users.name, dospem1.name, dospem2.name FROM tb_t_mahasiswa
-        // JOIN users ON tb_t_mahasiswa.user_id=users.id
-        // JOIN users AS dospem1 ON dospem1.id = tb_t_mahasiswa.dosen_id1
-        // JOIN users AS dospem2 ON dospem2.id = tb_t_mahasiswa.dosen_id2;
     }
 
     public function create()
@@ -41,6 +32,7 @@ class MahasiswaController extends Controller
     {
         $this->validate($request, [
             'user_id' => 'required',
+            'nim' => 'required',
             'title' => 'required',
             'dosen_id1' => 'required',
             'dosen_id2' => 'required',
@@ -52,6 +44,7 @@ class MahasiswaController extends Controller
 
         Mahasiswa::create([
             'user_id' => $request->user_id,
+            'nim' => $request->nim,
             'title' => $request->title,
             'dosen_id1' => $request->dosen_id1,
             'dosen_id2' => $request->dosen_id2,
@@ -74,6 +67,7 @@ class MahasiswaController extends Controller
     {
         $this->validate($request, [
             'user_id' => 'required',
+            'nim' => 'required',
             'title' => 'required',
             'dosen_id1' => 'required',
             'dosen_id2' => 'required',
@@ -84,6 +78,7 @@ class MahasiswaController extends Controller
 
         $pegawai = Mahasiswa::find($id);
         $pegawai->user_id = $request->user_id;
+        $pegawai->nim = $request->nim;
         $pegawai->title = $request->title;
         $pegawai->dosen_id1 = $request->dosen_id1;
         $pegawai->dosen_id2 = $request->dosen_id2;
@@ -103,10 +98,14 @@ class MahasiswaController extends Controller
     //
 
     public function Detail($id)
-    {
-        $mahasiswa = Mahasiswa::find($id);
-        return view('Mahasiswa/detail-mahasiswa', ['mahasiswa' => $mahasiswa]);
+    {        
+        //$mahasiswaD = Mahasiswa::find($id);
+        
+        $mahasiswa = DB::select("SELECT tb_t_mahasiswa.nim as nim, users.name as nama, tb_t_mahasiswa.title, tb_t_mahasiswa.year, users.name as mahasiswa, dospem1.name as dosen1, dospem2.name as dosen2, tb_t_mahasiswa.start,tb_t_mahasiswa.finish,tb_t_mahasiswa.status  FROM tb_t_mahasiswa
+        JOIN users ON tb_t_mahasiswa.user_id=users.id
+        JOIN users AS dospem1 ON dospem1.id = tb_t_mahasiswa.dosen_id1
+        JOIN users AS dospem2 ON dospem2.id = tb_t_mahasiswa.dosen_id2 where tb_t_mahasiswa.id = $id");
+        
+        return view('Mahasiswa/detail-mahasiswa', ['mahasiswa' => $mahasiswa] );       
     }
-    
-
 }

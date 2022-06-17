@@ -28,6 +28,15 @@
                     @endif
                 </div>
                 <div class="form-group">
+                    <label>NIM</label>
+                    <input type="text" name="nim" class="form-control" placeholder="Nomor Induk Mahasiswa .." value=" {{ $mahasiswa->user_id }}"></input>
+                    @if($errors->has('nim'))
+                    <div class="text-danger">
+                        {{ $errors->first('nim')}}
+                    </div>
+                    @endif
+                </div>
+                <div class="form-group">
                     <label>Judul Tugas Akhir</label>
                     <textarea type="text" name="title" class="form-control" placeholder="Judul Tugas Akhir ..">{{ $mahasiswa->title }}</textarea>
                     @if($errors->has('title'))
