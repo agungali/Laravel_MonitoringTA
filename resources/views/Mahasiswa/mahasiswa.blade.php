@@ -97,6 +97,68 @@
                             </table>
                         </div>
                     </div>
+                    <!-- ModalUpload -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Upload Bukti Daftar</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row mb-3">
+                                        <form action="{{ route('proses_uploadbukti') }}" id="uploadgbr-form" method="POST" enctype="multipart/form-data">
+                                            {{ csrf_field() }}
+                                            <div class="col-md-6">
+                                                <input type="file" name="file" />
+                                                @error('file')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                                @enderror
+                                            </div>
+                                            <!-- <input type="submit" value="Upload" class="btn btn-primary"> -->
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary" href="{{ route('proses_uploadbukti') }}" onclick="event.preventDefault(); document.getElementById('uploadgbr-form').submit();">Save changes</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ModalUploadEnd -->
+
+                    <!-- ModalView -->
+                    <div class="modal fade" id="exampleModalview" tabindex="-1" aria-labelledby="exampleModalLabelview" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabelview"> Bukti Daftar</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                @foreach($gambar as $g)
+                                <div class="modal-body">
+                                    <div class="row mb-3">
+                                        <tbody>
+
+                                            <tr>
+                                                <td><img width="100%" src="{{ url('/ttdfolder/'.$g->gbr) }}"></td>
+                                            </tr>
+
+                                        </tbody>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" href="/mahasiswa/hapus/{{ $g->id }}"><i class="dw dw-delete-3"></i> Delete</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ModalView -->
                 </div>
             </div>
         </div>

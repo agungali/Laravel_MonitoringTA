@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
+use App\Providers\RouteServiceProvider;
 
 class Role
 {
@@ -23,11 +24,14 @@ class Role
             return $next($request);
         }
         if (Auth::user()->role == 'admin') {
-            return Redirect::to('admin');
+            return redirect(RouteServiceProvider::ADMIN);
+            //return Redirect::to('admin');
         } elseif (Auth::user()->role == 'dosen') {
-            return Redirect::to('dosen');
+            return redirect(RouteServiceProvider::DOSEN);
+            //return Redirect::to('dosen');
         } elseif (Auth::user()->role == 'mahasiswa') {
-            return Redirect::to('mahasiswa');
+            return redirect(RouteServiceProvider::MAHASISWA);
+            //return Redirect::to('mahasiswa');
         }
         
     }

@@ -44,8 +44,8 @@ class User extends Authenticatable
     ];
 
     //relationstart
-    public function mahasiswa(){
-    	return $this->hasMany('App\Mahasiswa');
-    }
+    // public function mahasiswa(){
+    // 	return $this->hasMany('App\Mahasiswa');
+    // }
     //relationend
 }

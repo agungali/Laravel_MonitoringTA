@@ -24,8 +24,8 @@ class Mahasiswa extends Model
 
 
     //relation start
-    public function users(){
-    	return $this->belongsTo('App\User');
-    }
+    // public function users(){
+    // 	return $this->belongsTo('App\User');
+    // }
     //relation end
 }
