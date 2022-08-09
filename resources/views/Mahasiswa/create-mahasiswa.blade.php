@@ -11,7 +11,7 @@
             <br />
             <br />
 
-            <form action="{{ route('createdata') }}" method="post" >
+            <form action="{{ route('createdata') }}" method="post">
 
                 {{ csrf_field() }}
 
@@ -26,7 +26,7 @@
                     @endif
 
                 </div> -->
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <label>Id</label>
                     <input type="text" name="user_id" class="form-control" placeholder="Judul Tugas Akhir .."></input>
                     @if($errors->has('user_id'))
@@ -34,7 +34,7 @@
                         {{ $errors->first('user_id')}}
                     </div>
                     @endif
-                </div>
+                </div> -->
                 <div class="form-group">
                     <label>NIM</label>
                     <input type="number" name="nim" class="form-control" placeholder="Nim .."></input>
@@ -55,7 +55,15 @@
                 </div>
                 <div class="form-group">
                     <label>Dosen Pertama</label>
-                    <input type="text" name="dosen_id1" class="form-control" placeholder="Dosen Pertama..">
+                    <!-- <input type="text" name="dosen_id1" class="form-control" placeholder="Dosen Pertama.."> -->
+                   
+                    <select name="dosen_id1" class="form-select" aria-label="Default select example">
+                        <option selected>Dosen Pertama</option>
+                        @foreach($dosen as $d)
+                        <option value="{{ $d->id }}">{{ $d->name }}</option>
+                        @endforeach
+                    </select>
+                    
                     @if($errors->has('dosen_id1'))
                     <div class="text-danger">
                         {{ $errors->first('dosen_id1')}}
@@ -64,7 +72,13 @@
                 </div>
                 <div class="form-group">
                     <label>Dosen Kedua</label>
-                    <input type="text" name="dosen_id2" class="form-control" placeholder="Dosen Kedua ..">
+                    <!-- <input type="text" name="dosen_id2" class="form-control" placeholder="Dosen Kedua .."> -->
+                    <select name="dosen_id2" class="form-select" aria-label="Default select example">
+                        <option selected>Dosen Kedua</option>
+                        @foreach($dosen as $d)
+                        <option value="{{ $d->id }}">{{ $d->name }}</option>
+                        @endforeach
+                    </select>
                     @if($errors->has('dosen_id2'))
                     <div class="text-danger">
                         {{ $errors->first('dosen_id2')}}
@@ -80,7 +94,7 @@
                     </div>
                     @endif
                 </div>
-               <div class="form-group">
+                <div class="form-group">
                     <label>Tanggal Mulai Tugas Akhir</label>
                     <input type="date" name="start" class="form-control" placeholder="Tanggal Mulai Tugas Akhir ..">
                     @if($errors->has('strat'))
@@ -89,7 +103,7 @@
                     </div>
                     @endif
                 </div>
-                 <div class="form-group">
+                <div class="form-group">
                     <label>Tanggal Berakhir Tugas AKhir</label>
                     <input type="date" name="finish" class="form-control" placeholder="Tanggal Mulai Tugas Akhir ..">
                     @if($errors->has('finish'))

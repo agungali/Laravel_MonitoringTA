@@ -11,8 +11,6 @@
             <a href="/mahasiswa" class="btn btn-primary">Kembali</a>
             <br />
             <br />
-
-
             <form method="post" action="/mahasiswa/update/{{ $mahasiswa->id }}">
 
                 {{ csrf_field() }}
