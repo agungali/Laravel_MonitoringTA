@@ -45,7 +45,7 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
 Route::group(['middleware' => ['auth', 'role:dosen']], function () {
     Route::get('/dosen', [DosenController::class, 'index'])->name('dosen');
     Route::get('/mahasiswa/detail/{id}', [MahasiswaController::class, 'detail'])->name('detail');
-    Route::post('/mahasiswa/uploadttd', [MahasiswaController::class, 'proses_uploadbukti'])->name('proses_uploadbukti');
+    Route::post('/dosen/uploadttd', [DosenController::class, 'proses_uploadbuktittd'])->name('proses_uploadbuktittd');
 });
 
 

@@ -121,6 +121,19 @@
                         </div>
                         @endif
                         <!-- buktidaftarend -->
+                        <!-- buktidaftar -->
+                        @if (Auth::user()->role == 'dosen')
+                        <div class="dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                                Tanda Tangan
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                                <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal" href=""><i class="dw dw-upload2"></i> Upload</a>
+                                <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModalview" href=""><i class="dw dw-eye"></i> View</a>
+                            </div>
+                        </div>
+                        @endif
+                        <!-- buktidaftarend -->
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             {{ Auth::user()->name }}
                         </a>
